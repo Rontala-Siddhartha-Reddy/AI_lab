@@ -1,0 +1,17 @@
+import random
+def generate_kSAT(k, m, n):
+    clauses = []
+    for _ in range(m):
+        clause, used = [], set()
+        while len(clause) < k:
+            var = random.randint(1, n)
+            if var not in used:  # avoid repetition
+                used.add(var)
+                lit = var if random.choice([True, False]) else -var
+                clause.append(lit)
+        clauses.append(clause)
+    return clauses
+
+print(generate_kSAT(3, 4, 5))  
+
+O/P: [[1, -2, 3], [-1, 4, -5], [2, -3, 5], [1, -4, -2]]
