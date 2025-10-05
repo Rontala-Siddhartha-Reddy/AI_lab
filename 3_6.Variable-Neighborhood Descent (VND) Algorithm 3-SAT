@@ -1,0 +1,5 @@
+1.	Start with a random assignment.
+2.	Define neighborhoods (flip 1 var, flip 2 vars, flip all in clause, etc.).
+3.	Search current neighborhood for better solution.
+4.	If found, move there and restart from first neighborhood.
+5.	If no better solution in any neighborhood → stop.
