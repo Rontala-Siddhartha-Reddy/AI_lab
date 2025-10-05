@@ -1,0 +1,11 @@
+1.	Initial State: Random shuffle of puzzle pieces.
+2.	Neighbour Function: Swap two random pieces.
+3.	Energy Function:
+o	Compare edges of adjacent pieces.
+o	If edges match → lower cost, if mismatch → higher cost.
+o	Example: Left edge of piece(i) ≠ Right edge of piece(j) → add penalty.
+4.	Acceptance Rule:
+o	If arrangement improves (lower mismatch), accept.
+o	Else accept with probability exp(-(ΔE)/T).
+5.	Cooling Schedule: Gradually reduce T until convergence.
+6.	Goal State: All edges match → correct reconstruction of image.
