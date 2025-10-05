@@ -1,0 +1,5 @@
+1.	Generate k random assignments (beam width = k).
+2.	Evaluate each using heuristic.
+3.	Keep the best k assignments.
+4.	Expand them (flip variables to generate neighbors).
+5.	Repeat until solution found or no improvement.
