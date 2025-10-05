@@ -1,0 +1,7 @@
+	Put the start state into a priority queue.
+  While queue is not empty:
+	Remove the state with the lowest heuristic h(n).
+	If it is a goal state → return solution.
+	Otherwise, expand neighbors and insert them with their h(n).
+	If queue empty → failure.
+In the game: heuristic can be h1 = number of marbles left or h2 = distance of marbles from center.
