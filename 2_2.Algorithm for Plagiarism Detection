@@ -1,0 +1,39 @@
+function A_STAR_PLAGIARISM(doc1, doc2): 
+    openSet ← PriorityQueue ordered by f(n) 
+    closedSet ← empty set 
+    start ← (0, 0, 0, []) 
+    openSet.push(start, f=0) 
+    while openSet is not empty: 
+         current ← openSet.pop() 
+         if current.i == len(doc1) and current.j == len(doc2): 
+              return current.path 
+         if (current.i, current.j) in closedSet: 
+              continue 
+         closedSet.add((current.i, current.j)) 
+         successors ← [] 
+	# 1. Align current sentences
+         if current.i < len(doc1) and current.j < len(doc2): 
+             costAlign ← editDistance(doc1[i], doc2[j]) 
+             newState ← (i+1, j+1, current.cost + costAlign, 
+                     current.path + [(doc1[i], doc2[j])]) 
+            successors.append(newState) 
+	# 2. Skip in doc1
+         If current.i < len(doc1): 
+             newState ← (i+1, j, current.cost + 1, 
+                 current.path + [(doc1[i], None)]) 
+             successors.append(newState) 
+	# 3. Skip in doc2
+         If current.j < len(doc2): 
+              newState ← (i, j+1, current.cost + 1, 
+                   current.path + [(None, doc2[j])]) 
+              successors.append(newState) 
+          for state in successors: 
+g ← state.cost 
+h← heuristic(state.i, state.j, doc1, doc2) 
+f← g + h 
+              openSet.push(state, f) 
+           return "No alignment found" 
+    function heuristic(i, j, doc1, doc2): 
+         return abs((len(doc1) - i) - (len(doc2) - j)) 
+    function editDistance(s1, s2): 
+         # Levenshtein distance implementation
