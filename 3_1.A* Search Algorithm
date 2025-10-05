@@ -1,0 +1,9 @@
+Put start state into priority queue with f(n) = g(n) + h(n).
+g(n) = moves taken so far.
+	h(n) = heuristic estimate.
+	While queue is not empty:
+	Remove state with lowest f(n).
+	If it is a goal state → return solution.
+	Otherwise expand neighbors and insert them with their f(n).
+	If queue empty → failure.
+In the game: A* balances moves done + heuristic, so it avoids dead-ends.
