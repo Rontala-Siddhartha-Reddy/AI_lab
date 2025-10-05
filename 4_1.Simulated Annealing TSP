@@ -1,0 +1,30 @@
+1.	Initial State: Start with a random tour (e.g., Jaipur → Udaipur → Jodhpur … → Jaipur).
+2.	Energy Function (Cost):
+o	E = total distance of tour.
+o	Lower E = better solution.
+3.	Neighbour Function:
+o	Swap two cities in the tour. Example: Swap Udaipur & Jodhpur in path.
+4.	Acceptance Probability:
+o	If new tour has lower cost, accept it.
+o	If worse, accept with probability
+P = exp(-(ΔE) / T)
+        where ΔE = increase in cost, T = temperature.
+5.	Cooling Schedule:
+•	Start with high T (say 1000).
+•	Gradually decrease (e.g., T = 0.95 × T each iteration).
+6.	Stopping Condition:
+•	When T is very small (e.g., < 0.01) or fixed iterations reached.
+
+
+
+Input:
+•	Initial state S (random solution).
+•	Energy function E(s) (cost of solution).
+•	Neighbour function N(s) (small modification to current solution).
+•	Initial temperature T.
+•	Cooling schedule.
+Output:
+•	A near-optimal solution.
+1.Start with a random solution S.
+2.Compute its energy E(S) (e.g., total distance in TSP, mismatches in Jigsaw).
+3.Initialize temperature T = T0 (high value).
