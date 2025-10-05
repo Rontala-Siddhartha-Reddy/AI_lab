@@ -1,0 +1,4 @@
+1.	Start with a random assignment of variables.
+2.	Evaluate heuristic = number of satisfied clauses.
+3.	Try flipping one variable → if heuristic improves, keep change.
+4.	Repeat until no improvement possible (local maximum) or solution found.
