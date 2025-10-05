@@ -1,0 +1,62 @@
+# State: (M_left, C_left, boat) where boat: 0=left, 1=right
+initial = (3,3,0)
+goal = (0,0,1)
+moves = [(1,0),(2,0),(0,1),(0,2),(1,1)]
+def valid(state):
+    M_left, C_left, _ = state
+    if not (0 <= M_left <= 3 and 0 <= C_left <= 3):
+        return False
+    M_right = 3 - M_left
+    C_right = 3 - C_left
+    if M_left > 0 and C_left > M_left:
+        return False
+    if M_right > 0 and C_right > M_right:
+        return False
+    return True
+
+def successors(state):
+    M_left, C_left, boat = state
+    succs = []
+    for m,c in moves:
+        if boat == 0:
+            new = (M_left - m, C_left - c, 1)
+        else:
+            new = (M_left + m, C_left + c, 0)
+        if valid(new):
+            succs.append(new)
+    return succs
+def bfs(start, goal):
+    q = deque([(start, [start])])
+    visited = set([start])
+    while q:
+        state, path = q.popleft()
+        if state == goal:
+            return path
+        for s in successors(state):
+            if s not in visited:
+                visited.add(s)
+                q.append((s, path + [s]))
+    return None
+def dfs(start, goal):
+    stack = [(start, [start])]
+    visited = set()
+    while stack:
+        state, path = stack.pop()
+        if state == goal:
+            return path
+        if state in visited:
+            continue
+        visited.add(state)
+        for s in successors(state):
+            if s not in visited:
+                stack.append((s, path + [s]))
+    return None
+if __name__ == "__main__":
+    print("BFS path (states):")
+    bp = bfs(initial, goal)
+    for i,s in enumerate(bp):
+        print(f"{i}: {s}")
+    print("\nDFS path (states):")
+    dp = dfs(initial, goal)
+    for i,s in enumerate(dp):
+        print(f"{i}: {s}")
