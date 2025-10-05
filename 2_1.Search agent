@@ -1,0 +1,13 @@
+function graph search(problem):
+    initialize frontier with initial state
+    initialize explored = empty set
+    while frontier not empty:
+        node ← frontier.pop()
+        if node.state is goal:
+            return solution(node)
+        if node.state not in explored:
+            add node.state to explored
+            for each child in expand(node):
+                if child.state not in explored or frontier:
+                    frontier.add(child)
+    return failure
